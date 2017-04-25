@@ -1,0 +1,100 @@
+<ng-container *ngIf="showMessage">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h2 id="message-heading" class="panel-title" tabindex="-1"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Thank you!</h2>
+    </div>
+
+    <div class="panel-body">
+      <p>Your message was sent.</p>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!showMessage">
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">Contact Us</h2>
+    </div>
+
+    <div class="panel-body">
+
+      <div id="error-bucket" class="error-notice panel panel-danger" *ngIf="!contactForm.valid && submitted">
+        <div class="panel-heading">
+          <h3 id="error-heading" class="panel-title" tabindex="-1"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Hang on, let's address these first</h3>
+        </div>
+        <div class="panel-body">
+          <ul id="error-list" class="error-list">
+            <li *ngIf="contactForm.controls['firstName'].hasError('required')">
+              <a href="#firstName">You must include a First Name</a>
+            </li>
+            <li *ngIf="contactForm.controls['lastName'].hasError('required')">
+              <a href="#lastName">You must include a Last Name</a>
+            </li>
+            <li *ngIf="contactForm.controls['phoneNumber'].hasError('required')">
+              <a href="#phoneNumber">You must include a Phone Number</a>
+            </li>
+            <li *ngIf="contactForm.controls['phoneNumber'].hasError('minlength')">
+              <a href="#phoneNumber">Your Phone Number must have at least 7 numbers</a>
+            </li>
+            <li *ngIf="contactForm.controls['phoneNumber'].hasError('pattern')">
+              <a href="#phoneNumber">Your Phone Number must be a valid format</a>
+            </li>
+            <li *ngIf="contactForm.controls['message'].hasError('required')">
+              <a href="#message">You must include a Message</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="submitForm(contactForm.value)">
+
+        <p class="required-msg">All fields marked with <span aria-hidden="true" class="required">*</span><span class="visuallyhidden">Required, </span> are required.</p>
+
+        <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['firstName'].valid && submitted}">
+          <label for="firstName">
+            <span aria-hidden="true" class="required">*</span>
+            <span class="visuallyhidden">Required, </span> First Name
+            <input id="firstName" class="form-control" type="text" [formControl]="contactForm.controls['firstName']">
+            <div *ngIf="contactForm.controls['firstName'].hasError('required') && submitted" class="alert alert-danger">You must include a First Name.</div>
+          </label>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['lastName'].valid && submitted}">
+          <label for="lastName">
+            <span aria-hidden="true" class="required">*</span>
+            <span class="visuallyhidden">Required, </span> Last Name
+            <input id="lastName" class="form-control" type="text" [formControl]="contactForm.controls['lastName']">
+            <div *ngIf="contactForm.controls['lastName'].hasError('required') && submitted" class="alert alert-danger">You must include a Last Name.</div>
+          </label>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['phoneNumber'].valid && submitted}">
+          <label for="phoneNumber">
+            <span aria-hidden="true" class="required">*</span>
+            <span class="visuallyhidden">Required, </span> Phone Number
+            <input id="phoneNumber" class="form-control" type="tel" [formControl]="contactForm.controls['phoneNumber']">
+            <div *ngIf="contactForm.controls['phoneNumber'].hasError('required') && submitted" class="alert alert-danger">You must include a Phone Number.</div>
+            <div *ngIf="contactForm.controls['phoneNumber'].hasError('minlength') && submitted" class="alert alert-danger">Your phone number must have at least 7 numbers.</div>
+            <div *ngIf="contactForm.controls['phoneNumber'].hasError('pattern') && submitted" class="alert alert-danger">Your phone number must be a valid format. Only include numbers, dashes, or period characters.</div>
+          </label>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['message'].valid && submitted}">
+          <label for="message">
+            <span aria-hidden="true" class="required">*</span>
+            <span class="visuallyhidden">Required, </span> Message
+            <textarea id="message" class="form-control" [formControl]="contactForm.controls['message']"></textarea>
+            <div *ngIf="contactForm.controls['message'].hasError('required') && submitted" class="alert alert-danger">You must include a message.</div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</ng-container>

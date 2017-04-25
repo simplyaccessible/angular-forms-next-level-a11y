@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* General Page Styles */
+
+.header #sa-logo {
+  width: 11em;
+}
+
+a {
+  color: #2172B7;
+  text-decoration: underline;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+h1 span {
+  display: block;
+}
+
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+/* Form Element Styles */
+
+label {
+  display: block;
+}
+
+label, input, textarea, .alert {
+  font-weight: 400;
+}
+
+.form-control[type="tel"] {
+  max-width: 200px;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #3770A2;
+  border-color: #2C5E89;
+}
+
+.alert {
+  margin-top: 5px;
+}
+
+textarea.form-control {
+  height: 150px;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute !important;
+}
