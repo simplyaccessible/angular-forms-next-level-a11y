@@ -35,6 +35,10 @@ label, input, textarea, .alert {
   font-weight: 400;
 }
 
+.form-control {
+  height: auto;
+}
+
 .form-control[type="tel"] {
   max-width: 200px;
 }
